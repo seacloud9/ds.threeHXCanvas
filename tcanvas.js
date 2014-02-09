@@ -112,7 +112,7 @@ var Tcanvas = function() {
 };
 Tcanvas.__name__ = true;
 Tcanvas.main = function() {
-	console.log("Hello World !");
+	console.log("threeHX canvas example");
 	var t = new Tcanvas();
 	var body = js.Browser.document.body;
 	body.appendChild(t.container);

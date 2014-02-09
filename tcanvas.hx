@@ -49,11 +49,10 @@ class Tcanvas {
     }
 
     static function main():Void {
-    	trace("Hello World !");
+    	trace("threeHX canvas example");
     	var t:Tcanvas = new Tcanvas();
     	var body = Browser.document.body;
     	body.appendChild( t.container );
-
     	t.init();
     	t.animate();
     }
@@ -69,14 +68,12 @@ class Tcanvas {
     	scene = new Scene();
 		// Cube
 		var geometry:CubeGeometry = new CubeGeometry( 200, 200, 200 );
-
 		var i:Int = 0;
 		var hex:Dynamic = Math.random() * 0xffffff;
 		//var hex:Dynamic = 0x7db9e8;
 		while(i < geometry.faces.length){
 			geometry.faces[ i ].color.setHex( hex );
 			geometry.faces[ i + 1 ].color.setHex( hex );
-
 			i+=2;
 		}
 		var material:MeshBasicMaterial = new MeshBasicMaterial( { vertexColors: THREE.FaceColors, overdraw: 0.5 } );
@@ -91,7 +88,6 @@ class Tcanvas {
 		scene.add( plane );
 		renderer = new DebugRenderer();
 		renderer.setSize( js.Browser.window.innerWidth, js.Browser.window.innerHeight );
-
 		doc = Browser.document.body;
 		doc.addEventListener( 'mousedown', onDocumentMouseDown, false );
 		doc.addEventListener( 'touchstart', onDocumentTouchStart, false );
@@ -110,46 +106,46 @@ class Tcanvas {
 	}
 
 	public function onDocumentMouseDown( event:Dynamic ):Void {
-				event.preventDefault();
-				doc.addEventListener( 'mousemove', onDocumentMouseMove, false );
-				doc.addEventListener( 'mouseup', onDocumentMouseUp, false );
-				doc.addEventListener( 'mouseout', onDocumentMouseOut, false );
-				mouseXOnMouseDown = event.clientX - windowHalfX;
-				targetRotationOnMouseDown = targetRotation;
+		event.preventDefault();
+		doc.addEventListener( 'mousemove', onDocumentMouseMove, false );
+		doc.addEventListener( 'mouseup', onDocumentMouseUp, false );
+		doc.addEventListener( 'mouseout', onDocumentMouseOut, false );
+		mouseXOnMouseDown = event.clientX - windowHalfX;
+		targetRotationOnMouseDown = targetRotation;
 	}
 
 	public function onDocumentMouseMove( event:Dynamic ):Void {
-				mouseX = event.clientX - windowHalfX;
-				targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
+		mouseX = event.clientX - windowHalfX;
+		targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.02;
 	}
 
 	public function onDocumentMouseUp( event:Dynamic ):Void {
-				doc.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-				doc.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-				doc.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+		doc.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+		doc.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+		doc.removeEventListener( 'mouseout', onDocumentMouseOut, false );
 	}
 
 	public function onDocumentMouseOut( event:Dynamic ):Void {
-				doc.removeEventListener( 'mousemove', onDocumentMouseMove, false );
-				doc.removeEventListener( 'mouseup', onDocumentMouseUp, false );
-				doc.removeEventListener( 'mouseout', onDocumentMouseOut, false );
+		doc.removeEventListener( 'mousemove', onDocumentMouseMove, false );
+		doc.removeEventListener( 'mouseup', onDocumentMouseUp, false );
+		doc.removeEventListener( 'mouseout', onDocumentMouseOut, false );
 	}
 
 	public function onDocumentTouchStart( event:Dynamic ):Void {
-			var etl:Int = event.touches.length;
-				if ( etl == 1 ) {
-					event.preventDefault();
-					mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
-					targetRotationOnMouseDown = targetRotation;
-				}
+		var etl:Int = event.touches.length;
+		if ( etl == 1 ) {
+			event.preventDefault();
+			mouseXOnMouseDown = event.touches[ 0 ].pageX - windowHalfX;
+			targetRotationOnMouseDown = targetRotation;
+		}
 	}
 
 	public function onDocumentTouchMove( event:Dynamic ):Void {
-				if ( event.touches.length == 1 ) {
-					event.preventDefault();
-					mouseX = event.touches[ 0 ].pageX - windowHalfX;
-					targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
-				}
+		if ( event.touches.length == 1 ) {
+			event.preventDefault();
+			mouseX = event.touches[ 0 ].pageX - windowHalfX;
+			targetRotation = targetRotationOnMouseDown + ( mouseX - mouseXOnMouseDown ) * 0.05;
+		}
 	}
 
 }
